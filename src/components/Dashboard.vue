@@ -2,9 +2,9 @@
 import { onMounted, reactive } from "vue"
 import { useMQTT } from "mqtt-vue-hook"
 const mqttHook = useMQTT()
-const protocol = "ws"
+const protocol = "wss"
 const host = "broker.hivemq.com"
-const port = 8000
+const port = 8884
 
 interface IWiFi {
   ssid: string
