@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { onMounted } from "vue"
 
-const props = defineProps({
+defineProps({
   min: { type: [String, Number], default: 0 },
   max: { type: [String, Number], default: 100 },
   step: { type: [String, Number], default: 1 },
@@ -11,7 +11,6 @@ const props = defineProps({
 })
 defineEmits(["update:modelValue"])
 
-const range = ref(0)
 const map = (
   current: number,
   inMin: number,
@@ -37,8 +36,8 @@ onMounted(() => {})
       :max="max"
       :step="step"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :style="{ 'background-size': `${map(modelValue, min, max, 1, 100)}% 100%` }"
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      :style="{ 'background-size': `${map(+modelValue, +min, +max, 1, 100)}% 100%` }"
       class="w-full bg-gradient-to-r from-green-300 to-green-500 bg-gray-300 h-5 rounded-full appearance-none cursor-pointer bg-no-repeat"
     />
   </div>
